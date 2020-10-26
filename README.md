@@ -1,8 +1,8 @@
 # ระบบจัดการหลังร้าน php_crud_sweetalert2
 
 <h1>เข้าสู่ระบบ</h1> <br/>
-<p>username = </ย>admin<br/>
-<p>password = </ย>12345678<br/>
+<p>username = </p>admin<br/>
+<p>password = </p>12345678<br/>
 <br/>
 
 #สนับสนุนค่าขนม เป็นกำลังในการพัฒนเวอร์ชันต่อไป
