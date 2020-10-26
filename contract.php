@@ -64,7 +64,7 @@ if (isset($_SESSION['a_username'])) { ?>
                         <h4 class="font-weight-bold text-primary mb-4">สนับสนุนค่าขนม</h4>
                         <img src="https://upload.wikimedia.org/wikipedia/th/4/4a/Logo_GSB_Thailand.svg"
                             class="img-fluid" width="60" alt="Responsive image"><br><br>
-                        <h6><a class="mb-3" href="#">0202-2904-09372</a> <br>ณัฐกฤต ทิศเสถียร</h6>
+                        <h6><a class="mb-3" href="#">0202-9040-9372</a> <br>ณัฐกฤต ทิศเสถียร</h6>
 
 
                         <a type="button" class="btn btn-warning btn-rounded mx-0 mt-4">ติดต่อ</a>
