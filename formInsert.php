@@ -13,55 +13,111 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- การลิ้ง css ของ data table เเบบ cdn -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
-    <!-- javascript ที่ทำงานกับ datatable ลิ้งมาเเบบ cdn -->
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-
-    <!-- การลิ้ง icon เพื่อใช้งาน icon -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
     <!-- การลิ้ง sweetalert2 เเบบ cdn  -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 </head>
 
-<body>
+<body class="">
 
     <!-- การนำเข้า Navbar -->
     <?php include_once("navBar.php"); ?>
 
     <br>
 
-    <div class="container my-5">
-        <h2>Form Validation</h2>
-        <p>In this example, we use <code>.was-validated</code> to indicate what's missing before submitting the form:
-        </p>
-        <form action="/action_page.php" class="">
-            <div class="form-group">
-                <label for="uname">Username:</label>
-                <input type="text" class="form-control" id="uname" autofocus placeholder="Enter username" name="uname"
-                    required>
+
+
+    <div class="container my-5 px-0 1">
+
+        <!--Section: Content-->
+        <section class="p-5 my-md-5 text-center">
+
+
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <!-- Material form login -->
+                    <div class="card">
+
+                        <!--Card content-->
+                        <div class="card-body">
+
+                            <!-- Form -->
+                            <form class="text-center" style="color: #757575;" action="" method="POST">
+
+                                <h3 class="font-weight-bold my-4 pb-2 text-center text-primary">เพิ่มสินค้า </h3>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" required autofocus placeholder="ชื่อสินค้า"
+                                        name="p_name" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control" required placeholder="ราคาสินค้า"
+                                        name="p_price" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control" required placeholder="จำนวนสินค้า"
+                                        name="p_count" required>
+                                </div>
+
+                                <div class="text-center">
+                                    <input type="submit" name="SubmitInsert" value="เพิ่มสินค้า"
+                                        class="btn btn-primary">
+                                </div>
+
+                            </form>
+                            <!-- Form -->
+
+                        </div>
+
+                    </div>
+                    <!-- Material form login -->
+                </div>
             </div>
-            <div class="form-group">
-                <label for="pwd">Password:</label>
-                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+
+
+        </section>
+        <!--Section: Content-->
     </div>
     <!-- จบ คลาส container -->
 
+    <?php
 
+    if (isset($_POST["SubmitInsert"])) {
+        //นำเข้าไฟล์ การเชื่อมต่อฐานข้อมูล
+        include_once("config/connectDB.php");
+
+        //คำสั่ง SQL บันทึกข้อมูลลงฐานข้อมูล
+        $sql = "INSERT INTO tbl_products (p_id, p_name, p_price, p_count) 
+                VALUES (NULL, '{$_POST["p_name"]}', '{$_POST["p_price"]}', '{$_POST["p_count"]}');";
+
+        if (mysqli_query($conn, $sql)) {
+            echo
+                "<script> 
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'บันทึกข้อมูลสำเร็จ',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(()=> location = 'index.php')
+                </script>";
+        } else {
+            echo
+                "<script> 
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'บันทึกข้อมูลไม่สำเร็จ', 
+                        text: 'โปรดตรวจสอบความถูกต้องของข้อมูล!',
+                    }) 
+                </script>";
+        }
+        mysqli_close($conn);
+    }
+
+    ?>
 
 </body>
-<!-- javascript ที่ทำงานกับ datatable ถ้าไม่ใส่จะใช้ datatable ไม่ได้ -->
-<script>
-$(document).ready(function() {
-    $('#example').DataTable();
-});
-</script>
+
 
 </html>

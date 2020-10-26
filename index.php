@@ -16,6 +16,7 @@
     <!-- การลิ้ง css ของ data table เเบบ cdn -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <!-- javascript ที่ทำงานกับ datatable ลิ้งมาเเบบ cdn -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 
@@ -44,15 +45,15 @@
             </h3>
         </div>
         <div class="col-md-2 mt-2">
-            <button class="btn btn-primary">
-                <i class="far fa-plus-square"></i><span class=" ml-3">เพิ่มสินค้า</span>
-            </button>
+            <a href="formInsert.php" class="btn btn-primary">
+                <i class="far fa-plus-square"></i><span class=" ml-2">เพิ่มสินค้า</span>
+            </a>
         </div>
     </div>
     <br>
 
     <!-- data table ใช้เเสดงข้อมูลเเละเเบ่งหน้าให้อัตโนมัติ -->
-    <table id=" example" class="table table-striped table-bordered table-hover table-responsive-sm" style="width:100%">
+    <table id="example" class="table table-striped table-bordered table-hover table-responsive-sm" style="width:100%">
         <thead class="thead-dark">
             <tr>
                 <th>ไอดีสินค้า</th>
@@ -93,7 +94,7 @@
                         <a class="btn btn-warning" href="formEdit.php?p_id=<?php echo $item["p_id"]; ?>">
                             <i class="fas fa-edit"> </i>
                         </a>
-                        <a class="btn btn-danger" href="productDelete.php?p_id=<?php echo $item["p_id"]; ?>">
+                        <a class="btn btn-danger" href="index.php?p_id=<?php echo $item["p_id"]; ?>">
                             <i class="fas fa-trash"> </i>
                         </a>
                     </div>
@@ -127,14 +128,60 @@
     </div>
     <!-- จบ คลาส container -->
 
+    <!-- โค้ด pHP ลบข้อมูล -->
 
+    <?php
+    //เช็อกว่่ามีการส่งค่า Get p_id หรือไม่ (?p_id=xxx)
+    if (isset($_GET["p_id"])) {
+
+        // คำสั่ง sql ในการลบข้อมูล ตาราง tbl_products โดยจะลบข้อมูลสินค้า p_id ที่ส่งมา
+        $sql = "DELETE FROM tbl_products WHERE p_id={$_GET["p_id"]}";
+
+        if (mysqli_query($conn, $sql)) {
+            echo
+                "<script> 
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'ยืนยันการลบข้อมูล?',
+                        text: 'ท่านเเน่ใจว่า ท่าต้องการลบข้อมูล!',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'ใช่',
+                        cancelButtonText: 'ไม่!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire(
+                            'ลบข้อมูลสำเร็จ!',
+                            'ท่านได้ลบข้อมูลเรียบร้อย',
+                            'success'
+                            ).then(()=> location = 'index.php')
+                        } 
+                    }); 
+                </script>";
+            //header('Location: index.php');
+        } else {
+            echo
+                "<script> 
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'ลบข้อมูลไม่สำเร็จ', 
+                    })
+                </script>";
+        }
+
+        mysqli_close($conn);
+    }
+    ?>
+
+    <!-- javascript ที่ทำงานกับ datatable ถ้าไม่ใส่จะใช้ datatable ไม่ได้ -->
+    <script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
+    </script>
 
 </body>
-<!-- javascript ที่ทำงานกับ datatable ถ้าไม่ใส่จะใช้ datatable ไม่ได้ -->
-<script>
-$(document).ready(function() {
-    $('#example').DataTable();
-});
-</script>
+
 
 </html>
