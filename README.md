@@ -4,4 +4,24 @@
 
 0202-2904-09372 ธนาคารออมสิน ณัฐกฤต ทิศเสถียร
 
-<img src="reviews/ProductsList.png" alt="My cool logo"/>
+<h1>หน้าเเสดง สินค้า</h1>
+<img src="reviews/ProductsList.png" />
+<br/>
+<h1>บันทึก สินค้า</h1>
+<img src="reviews/insertProduct.png" />
+<br/>
+<img src="reviews/insertSuccess.png" /> 
+<br/>
+<br/>
+<h1>ลบสินค้า</h1>
+<img src="reviews/DeleteProduct.png" />
+<br/>
+<img src="reviews/DeleteSuccess.png" />
+<br/>
+<h1>เเก้ไข สินค้า</h1>
+<img src="reviews/UpdateData.png" />
+<br/>
+<img src="reviews/UpdateSuccess.png" />
+<br/>
+<h1>เกี่ยวกับฉัน</h1>
+<img src="reviews/Contract.png" />
