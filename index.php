@@ -1,3 +1,6 @@
+<?php
+session_start();
+if (isset($_SESSION['a_username'])) { ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,17 +70,17 @@
 
             <?php
 
-            //นำเข้าไฟล์ การเชื่อมต่อฐานข้อมูล
-            include_once("config/connectDB.php");
+                //นำเข้าไฟล์ การเชื่อมต่อฐานข้อมูล
+                include_once("config/connectDB.php");
 
-            $sql = "SELECT * FROM tbl_products";
-            $result = mysqli_query($conn, $sql);
+                $sql = "SELECT * FROM tbl_products";
+                $result = mysqli_query($conn, $sql);
 
-            ////การเช็กว่าข้อมูลมีมากกว่า 1 row 
-            // if (mysqli_num_rows($result) > 0) 
-            // {
-            // เเสดงข้อมูลจากฐานข้อมูล
-            while ($item = mysqli_fetch_assoc($result)) { ?>
+                ////การเช็กว่าข้อมูลมีมากกว่า 1 row 
+                // if (mysqli_num_rows($result) > 0) 
+                // {
+                // เเสดงข้อมูลจากฐานข้อมูล
+                while ($item = mysqli_fetch_assoc($result)) { ?>
 
             <!-- เเสดงข้อมูลจากฐานข้อมูล -->
 
@@ -102,15 +105,15 @@
             </tr>
 
             <?php
-            }
-            // } 
-            // else {
-            //     echo "ไม่พบข้อมูลสินค้า";
-            // }
+                }
+                // } 
+                // else {
+                //     echo "ไม่พบข้อมูลสินค้า";
+                // }
 
-            ////การปิดการเชื่อมต่อฐานนข้อมูล เพื่อคืนค่าหน่วยความจำเเรมของเครื่อง
-            // mysqli_close($conn);
-            ?>
+                ////การปิดการเชื่อมต่อฐานนข้อมูล เพื่อคืนค่าหน่วยความจำเเรมของเครื่อง
+                // mysqli_close($conn);
+                ?>
 
         </tbody>
         <!-- <tfoot>
@@ -131,15 +134,15 @@
     <!-- โค้ด pHP ลบข้อมูล -->
 
     <?php
-    //เช็อกว่่ามีการส่งค่า Get p_id หรือไม่ (?p_id=xxx)
-    if (isset($_GET["p_id"])) {
+        //เช็อกว่่ามีการส่งค่า Get p_id หรือไม่ (?p_id=xxx)
+        if (isset($_GET["p_id"])) {
 
-        // คำสั่ง sql ในการลบข้อมูล ตาราง tbl_products โดยจะลบข้อมูลสินค้า p_id ที่ส่งมา
-        $sql = "DELETE FROM tbl_products WHERE p_id={$_GET["p_id"]}";
+            // คำสั่ง sql ในการลบข้อมูล ตาราง tbl_products โดยจะลบข้อมูลสินค้า p_id ที่ส่งมา
+            $sql = "DELETE FROM tbl_products WHERE p_id={$_GET["p_id"]}";
 
-        if (mysqli_query($conn, $sql)) {
-            echo
-                "<script> 
+            if (mysqli_query($conn, $sql)) {
+                echo
+                    "<script> 
                     Swal.fire({
                         icon: 'warning',
                         title: 'ยืนยันการลบข้อมูล?',
@@ -159,20 +162,20 @@
                         } 
                     }); 
                 </script>";
-            //header('Location: index.php');
-        } else {
-            echo
-                "<script> 
+                //header('Location: index.php');
+            } else {
+                echo
+                    "<script> 
                     Swal.fire({
                         icon: 'error',
                         title: 'ลบข้อมูลไม่สำเร็จ', 
                     })
                 </script>";
-        }
+            }
 
-        mysqli_close($conn);
-    }
-    ?>
+            mysqli_close($conn);
+        }
+        ?>
 
     <!-- javascript ที่ทำงานกับ datatable ถ้าไม่ใส่จะใช้ datatable ไม่ได้ -->
     <script>
@@ -183,5 +186,10 @@
 
 </body>
 
-
 </html>
+<?php
+} else {
+    header('Location: login.php');
+    exit;
+}
+?>

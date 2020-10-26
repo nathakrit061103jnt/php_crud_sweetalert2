@@ -1,5 +1,7 @@
 <?php
-if (isset($_GET["p_id"])) { ?>
+session_start();
+if (isset($_SESSION['a_username'])) {
+    if (isset($_GET["p_id"])) { ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,15 +39,15 @@ if (isset($_GET["p_id"])) { ?>
 
         <?php
 
-            //นำเข้าไฟล์ การเชื่อมต่อฐานข้อมูล
-            include_once("config/connectDB.php");
+                //นำเข้าไฟล์ การเชื่อมต่อฐานข้อมูล
+                include_once("config/connectDB.php");
 
-            $sql = "SELECT * FROM tbl_products WHERE p_id='{$_GET["p_id"]}'";
-            $result = mysqli_query($conn, $sql);
+                $sql = "SELECT * FROM tbl_products WHERE p_id='{$_GET["p_id"]}'";
+                $result = mysqli_query($conn, $sql);
 
 
-            // เเสดงข้อมูลจากฐานข้อมูล
-            while ($item = mysqli_fetch_assoc($result)) { ?>
+                // เเสดงข้อมูลจากฐานข้อมูล
+                while ($item = mysqli_fetch_assoc($result)) { ?>
 
         <!-- เเสดงข้อมูลจากฐานข้อมูล -->
 
@@ -78,8 +80,8 @@ if (isset($_GET["p_id"])) { ?>
         <!-- Card -->
 
         <?php
-            }
-            ?>
+                }
+                ?>
 
     </div>
 
@@ -89,6 +91,9 @@ if (isset($_GET["p_id"])) { ?>
 </html>
 
 <?php
-
+    }
+} else {
+    header('Location: login.php');
+    exit;
 }
 ?>

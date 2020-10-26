@@ -1,3 +1,6 @@
+<?php
+session_start();
+if (isset($_SESSION['a_username'])) { ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -83,17 +86,17 @@
 
     <?php
 
-    if (isset($_POST["SubmitInsert"])) {
-        //นำเข้าไฟล์ การเชื่อมต่อฐานข้อมูล
-        include_once("config/connectDB.php");
+        if (isset($_POST["SubmitInsert"])) {
+            //นำเข้าไฟล์ การเชื่อมต่อฐานข้อมูล
+            include_once("config/connectDB.php");
 
-        //คำสั่ง SQL บันทึกข้อมูลลงฐานข้อมูล
-        $sql = "INSERT INTO tbl_products (p_id, p_name, p_price, p_count) 
+            //คำสั่ง SQL บันทึกข้อมูลลงฐานข้อมูล
+            $sql = "INSERT INTO tbl_products (p_id, p_name, p_price, p_count) 
                 VALUES (NULL, '{$_POST["p_name"]}', '{$_POST["p_price"]}', '{$_POST["p_count"]}');";
 
-        if (mysqli_query($conn, $sql)) {
-            echo
-                "<script> 
+            if (mysqli_query($conn, $sql)) {
+                echo
+                    "<script> 
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
@@ -102,22 +105,27 @@
                         timer: 1500
                     }).then(()=> location = 'index.php')
                 </script>";
-        } else {
-            echo
-                "<script> 
+            } else {
+                echo
+                    "<script> 
                     Swal.fire({
                         icon: 'error',
                         title: 'บันทึกข้อมูลไม่สำเร็จ', 
                         text: 'โปรดตรวจสอบความถูกต้องของข้อมูล!',
                     }) 
                 </script>";
+            }
+            mysqli_close($conn);
         }
-        mysqli_close($conn);
-    }
 
-    ?>
+        ?>
 
 </body>
 
-
 </html>
+<?php
+} else {
+    header('Location: login.php');
+    exit;
+}
+?>
