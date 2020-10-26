@@ -2,9 +2,11 @@
 <html lang="en">
 
 <head>
-    <title>Crud By พี่เจมส์ ตาโต</title>
+    <title>Crud By Php Mysqli พี่เจมส์ ตาโต</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png"
+        href="https://scontent.fkkc3-1.fna.fbcdn.net/v/t1.0-9/119980752_337785307574954_1757152202764221432_o.jpg?_nc_cat=105&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeEdQ3uuMUpSNsKpHfjvpUDro1XX0a4IIyujVdfRrggjKx0oaTlnEEJRQqIYyg0KJMUxDMwjlPd-dN2hT7EGYqeo&_nc_ohc=0bT4uczorNcAX96yl_4&_nc_ht=scontent.fkkc3-1.fna&oh=6b8d05997d7e1dd2078a3062bc4a3886&oe=5FBB4911" />
     <!-- การลิ้ง css bootstrap เเบบ cdn -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- การลิ้ง javascript ของ bootstrap เเบบ cdn -->
@@ -21,102 +23,96 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
+    <!-- การลิ้ง sweetalert2 เเบบ cdn  -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <a class="navbar-brand" href="#">
-            <img src="https://scontent.fkkc3-1.fna.fbcdn.net/v/t1.0-9/119980752_337785307574954_1757152202764221432_o.jpg?_nc_cat=105&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeEdQ3uuMUpSNsKpHfjvpUDro1XX0a4IIyujVdfRrggjKx0oaTlnEEJRQqIYyg0KJMUxDMwjlPd-dN2hT7EGYqeo&_nc_ohc=0bT4uczorNcAX96yl_4&_nc_ht=scontent.fkkc3-1.fna&oh=6b8d05997d7e1dd2078a3062bc4a3886&oe=5FBB4911"
-                alt="logo" style="width:40px;">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="https://www.facebook.com/profile.php?id=100040304628322"
-                        target="black">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" target="black" href="https://github.com/nathakrit061103jnt">Github</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" target="black"
-                        href="https://github.com/nathakrit061103jnt/php_crud_sweetalert2">Source Code</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <!-- การนำเข้า Navbar -->
+    <?php include_once("navBar.php"); ?>
+
     <br>
 
-    <div class="container my-5">
-        <h3>รายการสินค้า จากฐานข้อมูล php_crud_sweetalert2</h3>
+    <div class="container my-5" ">
+        <div class=" row">
+        <div class="col-md-10">
+            <h3>
+                รายการสินค้า จากฐานข้อมูล
+                <span class="text-danger">php_crud_sweetalert2</span>
+            </h3>
+        </div>
+        <div class="col-md-2 mt-2">
+            <button class="btn btn-primary">
+                <i class="far fa-plus-square"></i><span class=" ml-3">เพิ่มสินค้า</span>
+            </button>
+        </div>
+    </div>
+    <br>
 
-        <!-- data table ใช้เเสดงข้อมูลเเละเเบ่งหน้าให้อัตโนมัติ -->
-        <table id="example" class="table table-striped table-bordered table-hover table-responsive-sm"
-            style="width:100%">
-            <thead class="thead-dark">
-                <tr>
-                    <th>ไอดีสินค้า</th>
-                    <th>ชื่อสินค้า</th>
-                    <th>ราคา</th>
-                    <th>จำนวน</th>
-                    <th>ดำเนินการ</th>
-                </tr>
-            </thead>
-            <tbody>
+    <!-- data table ใช้เเสดงข้อมูลเเละเเบ่งหน้าให้อัตโนมัติ -->
+    <table id=" example" class="table table-striped table-bordered table-hover table-responsive-sm" style="width:100%">
+        <thead class="thead-dark">
+            <tr>
+                <th>ไอดีสินค้า</th>
+                <th>ชื่อสินค้า</th>
+                <th>ราคา</th>
+                <th>จำนวน</th>
+                <th>ดำเนินการ</th>
+            </tr>
+        </thead>
+        <tbody>
 
-                <?php
+            <?php
 
-                //นำเข้าไฟล์ การเชื่อมต่อฐานข้อมูล
-                include_once("config/connectDB.php");
+            //นำเข้าไฟล์ การเชื่อมต่อฐานข้อมูล
+            include_once("config/connectDB.php");
 
-                $sql = "SELECT * FROM tbl_products";
-                $result = mysqli_query($conn, $sql);
+            $sql = "SELECT * FROM tbl_products";
+            $result = mysqli_query($conn, $sql);
 
-                ////การเช็กว่าข้อมูลมีมากกว่า 1 row 
-                // if (mysqli_num_rows($result) > 0) 
-                // {
-                // เเสดงข้อมูลจากฐานข้อมูล
-                while ($item = mysqli_fetch_assoc($result)) { ?>
+            ////การเช็กว่าข้อมูลมีมากกว่า 1 row 
+            // if (mysqli_num_rows($result) > 0) 
+            // {
+            // เเสดงข้อมูลจากฐานข้อมูล
+            while ($item = mysqli_fetch_assoc($result)) { ?>
 
-                <!-- เเสดงข้อมูลจากฐานข้อมูล -->
+            <!-- เเสดงข้อมูลจากฐานข้อมูล -->
 
-                <tr>
-                    <td class="" width="15%"><?php echo $item["p_id"]; ?></td>
-                    <td><?php echo $item["p_name"]; ?></td>
-                    <td><?php echo $item["p_price"]; ?> บาท</td>
-                    <td><?php echo $item["p_count"]; ?></td>
-                    <td class="text-center">
-                        <div class="btn-group btn-group-sm">
-                            <a class="btn btn-info" href="">
-                                <i class="fa fa-eye"></i>
-                            </a>
-                            <button class="btn btn-warning">
-                                <i class="fas fa-edit"> </i>
-                            </button>
-                            <button class="btn btn-danger">
-                                <i class="fas fa-trash"> </i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+            <tr>
+                <td class="" width="15%"><?php echo $item["p_id"]; ?></td>
+                <td><?php echo $item["p_name"]; ?></td>
+                <td><?php echo $item["p_price"]; ?> บาท</td>
+                <td><?php echo $item["p_count"]; ?></td>
+                <td class="text-center">
+                    <div class="btn-group btn-group-sm">
+                        <a class="btn btn-info" href="productDetail.php?p_id=<?php echo $item["p_id"]; ?>">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                        <a class="btn btn-warning" href="formEdit.php?p_id=<?php echo $item["p_id"]; ?>">
+                            <i class="fas fa-edit"> </i>
+                        </a>
+                        <a class="btn btn-danger" href="productDelete.php?p_id=<?php echo $item["p_id"]; ?>">
+                            <i class="fas fa-trash"> </i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
 
-                <?php
-                }
-                // } 
-                // else {
-                //     echo "ไม่พบข้อมูลสินค้า";
-                // }
+            <?php
+            }
+            // } 
+            // else {
+            //     echo "ไม่พบข้อมูลสินค้า";
+            // }
 
-                ////การปิดการเชื่อมต่อฐานนข้อมูล เพื่อคืนค่าหน่วยความจำเเรมของเครื่อง
-                // mysqli_close($conn);
-                ?>
+            ////การปิดการเชื่อมต่อฐานนข้อมูล เพื่อคืนค่าหน่วยความจำเเรมของเครื่อง
+            // mysqli_close($conn);
+            ?>
 
-            </tbody>
-            <!-- <tfoot>
+        </tbody>
+        <!-- <tfoot>
                 <tr>
                     <th>ไอดีสินค้า</th>
                     <th>ชื่อสินค้า</th>
@@ -125,12 +121,11 @@
                     <th>ดำเนินการ</th>
                 </tr>
             </tfoot> -->
-        </table>
-        <!-- จบ datatable -->
+    </table>
+    <!-- จบ datatable -->
 
     </div>
     <!-- จบ คลาส container -->
-
 
 
 
