@@ -62,7 +62,7 @@ if (isset($_SESSION['a_username'])) {
 
                             <!-- Form -->
                             <form class="text-center" style="color: #757575;" action="" method="POST">
-                                <h3 class="font-weight-bold my-4 pb-2 text-center text-danger">เพิ่มสินค้า </h3>
+                                <h3 class="font-weight-bold my-4 pb-2 text-center text-danger">เเก้ไขสินค้า </h3>
                                 <div class="form-group">
                                     <input type="text" value="<?php echo $item["p_name"]; ?>" class="form-control"
                                         required autofocus placeholder="ชื่อสินค้า" name="p_name" required>

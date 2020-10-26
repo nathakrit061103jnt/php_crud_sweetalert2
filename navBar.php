@@ -31,6 +31,11 @@
                          target="_blank">Source
                          Code</a>
                  </li>
+                 <li class="nav-item">
+                     <a class="nav-link" href="contract.php">
+                         ติดต่อ
+                     </a>
+                 </li>
              </ul>
 
              <!-- Right -->
