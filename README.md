@@ -41,4 +41,9 @@
 <img src="reviews/UpdateSuccess.png" />
 <br/>
 <h1>เกี่ยวกับฉัน</h1>
-<img src="reviews/Contract.png" />
+<img src="reviews/Contract.png" /><br/>
+
+<h1>หมายเหตุ</h1>
+<p><strong>tag</strong> : v1 ติดปัญหาการลบข้อมูล</p>
+<p><strong>tag</strong> : v1.1 เเก้ปัญหาการลบข้อมูล</p>
+<p><strong>ปัจจุบัน : </strong> : v1.1 โค้ดข่อนข้างสมบูรณ์ สามารถเเจ้งปัญหาได้ครับ จะรีบเเก้ไขชุดโค้ดเเละอัปเดดเวอร์ชันให้</p>
