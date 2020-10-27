@@ -5,10 +5,10 @@
 <p>password = 12345678</p><br/>
 <br/>
 
-<h1>การเชื่อมฐานข้อมูล</h1> <br/> 
-<p>$host = "localhost";</p><br/>
-<p>$user = "root";</p> <br/>
-<p>$password = "";</p> <br/>
+<h1>การเชื่อมฐานข้อมูล</h1>  
+<p>$host = "localhost";</p> 
+<p>$user = "root";</p>  
+<p>$password = "";</p> 
 <p>$database = "php_crud_sweetalert2";</p> <br/>
 
 #สนับสนุนค่าขนม เป็นกำลังในการพัฒนเวอร์ชันต่อไป
