@@ -97,7 +97,7 @@ if (isset($_SESSION['a_username'])) { ?>
                         <a class="btn btn-warning" href="formEdit.php?p_id=<?php echo $item["p_id"]; ?>">
                             <i class="fas fa-edit"> </i>
                         </a>
-                        <a class="btn btn-danger" href="index.php?p_id=<?php echo $item["p_id"]; ?>">
+                        <a class="btn btn-danger" href="index.php?deleteR=req&p_id=<?php echo $item["p_id"]; ?>">
                             <i class="fas fa-trash"> </i>
                         </a>
                     </div>
@@ -134,8 +134,31 @@ if (isset($_SESSION['a_username'])) { ?>
     <!-- โค้ด pHP ลบข้อมูล -->
 
     <?php
+
+        if (isset($_GET["deleteR"] )) {
+                echo
+                    "<script> 
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'ยืนยันการลบข้อมูล?',
+                            text: 'ท่านเเน่ใจว่า ท่าต้องการลบข้อมูล!',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'ใช่',
+                            cancelButtonText: 'ไม่!'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location = 'index.php?deleteR2=req&p_id={$_GET["p_id"]}'
+                            }else{
+                                location = 'index.php'
+                            }
+                        }); 
+                </script>";
+        }
+
         //เช็อกว่่ามีการส่งค่า Get p_id หรือไม่ (?p_id=xxx)
-        if (isset($_GET["p_id"])) {
+        if (isset($_GET["deleteR2"])) {
 
             // คำสั่ง sql ในการลบข้อมูล ตาราง tbl_products โดยจะลบข้อมูลสินค้า p_id ที่ส่งมา
             $sql = "DELETE FROM tbl_products WHERE p_id={$_GET["p_id"]}";
@@ -143,25 +166,12 @@ if (isset($_SESSION['a_username'])) { ?>
             if (mysqli_query($conn, $sql)) {
                 echo
                     "<script> 
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'ยืนยันการลบข้อมูล?',
-                        text: 'ท่านเเน่ใจว่า ท่าต้องการลบข้อมูล!',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'ใช่',
-                        cancelButtonText: 'ไม่!'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            Swal.fire(
+                        Swal.fire(
                             'ลบข้อมูลสำเร็จ!',
                             'ท่านได้ลบข้อมูลเรียบร้อย',
                             'success'
-                            ).then(()=> location = 'index.php')
-                        } 
-                    }); 
-                </script>";
+                        ).then(()=> location = 'index.php')
+                    </script>";
                 //header('Location: index.php');
             } else {
                 echo
@@ -169,7 +179,7 @@ if (isset($_SESSION['a_username'])) { ?>
                     Swal.fire({
                         icon: 'error',
                         title: 'ลบข้อมูลไม่สำเร็จ', 
-                    })
+                    }).then(()=> location = 'index.php')
                 </script>";
             }
 
