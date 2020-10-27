@@ -15,7 +15,7 @@
 
 <a href="#">0202-9040-9372</a> ธนาคารออมสิน ณัฐกฤต ทิศเสถียร <br/>
 
-<h1>True money allet<a href="">0611033102</a></h1> <br/>
+<h1>True money wallet<a href="">0611033102</a></h1> <br/>
 
 <h1>True money wallet<a href=""> : 0611033102</a></h1> <br/>
 
