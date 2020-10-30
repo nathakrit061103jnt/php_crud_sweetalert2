@@ -51,7 +51,7 @@
 <img src="โครงสร้างฐานข้อมูล/tbl_customers.png" /><br/>
 <h1>tbl_products</h1>
 <img src="โครงสร้างฐานข้อมูล/tbl_products.png" /><br/>
-
+ 
 <h1>หมายเหตุ</h1>
 <p><strong>tag</strong> : v1 ติดปัญหาการลบข้อมูล</p>
 <p><strong>tag</strong> : v1.1 เเก้ปัญหาการลบข้อมูล</p>
