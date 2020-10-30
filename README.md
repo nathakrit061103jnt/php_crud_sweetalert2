@@ -42,6 +42,15 @@
 <br/>
 <h1>เกี่ยวกับฉัน</h1>
 <img src="reviews/Contract.png" /><br/>
+<hr>
+<h1>โครงสร้างฐานข้อมูล</h1>
+<hr>
+<h1>tbl_admin</h1>
+<img src="โครงสร้างฐานข้อมูล/tbl_admin.png" /><br/>
+<h1>tbl_customers</h1>
+<img src="โครงสร้างฐานข้อมูล/tbl_customers.png" /><br/>
+<h1>tbl_products</h1>
+<img src="โครงสร้างฐานข้อมูล/tbl_products.png" /><br/>
 
 <h1>หมายเหตุ</h1>
 <p><strong>tag</strong> : v1 ติดปัญหาการลบข้อมูล</p>
