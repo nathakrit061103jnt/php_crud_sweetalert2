@@ -2,7 +2,7 @@
 
 <h1>เข้าสู่ระบบ</h1> <br/>
 <p>username = admin</p> 
-<p>password = 12345678</p><br/>
+<p>password = admin@123</p><br/>
 <br/>
 
 <h1>การเชื่อมฐานข้อมูล</h1>  
