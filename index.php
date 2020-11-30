@@ -39,7 +39,7 @@ if (isset($_SESSION['a_username'])) { ?>
 
     <br>
 
-    <div class="container my-5" ">
+    <div class="container my-5" >
         <div class=" row">
         <div class="col-md-10">
             <h3>
