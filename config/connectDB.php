@@ -1,17 +1,10 @@
 <?php
 
-// ## server ##
-$host = "us-cdbr-east-04.cleardb.com";
-$user = "b96f4b30055a5a";
-$password = "4d72ff7a";
-$database = "heroku_279a59c2954239d";
-
-
-// ## localhost ##
-// $host = "localhost";
-// $user = "root";
-// $password = "";
-// $database = "php_crud_sweetalert2";
+// ### localhost ##
+$host = "localhost";
+$user = "root";
+$password = "";
+$database = "php_crud_sweetalert2";
 
 // เชื่อมต่อฐานข้อมูล
 $conn = mysqli_connect($host, $user, $password, $database);
